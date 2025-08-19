@@ -9,5 +9,7 @@ package controlador;
  * @author misoj
  */
 public class Controlador {
-    
+    public void hola(){
+        System.out.println("Hola");
+    }
 }
