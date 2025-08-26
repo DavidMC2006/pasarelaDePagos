@@ -9,7 +9,11 @@ package controlador;
  * @author misoj
  */
 public class Controlador {
-    public void hola(){
-        System.out.println("Hola");
+
+
+        public static void main(String[] args) {
+            PasarelaPagosControlador pasarela = new PasarelaPagosControlador(200000); 
+            pasarela.iniciarPago();
+        }
     }
-}
+
