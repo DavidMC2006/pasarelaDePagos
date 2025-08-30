@@ -4,22 +4,30 @@
  */
 package controlador;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David Mansilla
  */
 
-public class PagoConsignacion {
+public class PagoConsignacion implements Pagos{
     private int idPago;               
     private String numeroCuenta;
-    private String entidadFinanciera;
-    private String comprobanteConsignacion;
+    private String banco;
+    private String referencia;
+    private double monto = 200000;
+    
+   
 
     public PagoConsignacion(int idPago, String numeroCuenta, String entidadFinanciera, String comprobanteConsignacion) {
         this.idPago = idPago;
         this.numeroCuenta = numeroCuenta;
-        this.entidadFinanciera = entidadFinanciera;
-        this.comprobanteConsignacion = comprobanteConsignacion;
+        this.banco = banco;
+        this.referencia = referencia;
+    }
+    public PagoConsignacion() {
+       
     }
 
     public int getIdPago() {
@@ -37,17 +45,27 @@ public class PagoConsignacion {
     }
 
     public String getEntidadFinanciera() {
-        return entidadFinanciera; 
+        return banco; 
     }
-    public void setEntidadFinanciera(String entidadFinanciera) {
-        this.entidadFinanciera = entidadFinanciera; 
+    public void setBanco(String banco) {
+        this.banco = banco; 
     }
 
-    public String getComprobanteConsignacion() {
-        return comprobanteConsignacion; 
+    public String getreferencia() {
+        return referencia; 
     }
-    public void setComprobanteConsignacion(String comprobanteConsignacion) {
-        this.comprobanteConsignacion = comprobanteConsignacion; 
+    public void setreferencia(String referencia) {
+        this.referencia = referencia; 
     }
+     public void crearPago() {
+        banco = JOptionPane.showInputDialog("Ingrese el banco donde consigna:");
+        referencia = JOptionPane.showInputDialog("Ingrese el número de consignación:");
+
+        JOptionPane.showMessageDialog(null,
+                "Pago con CONSIGNACIÓN realizado\n" +
+                "Monto: $" + monto + " COP\n" +
+                "Banco: " + banco + "\n" +
+                "Referencia: " + referencia);
+        }
 }
 

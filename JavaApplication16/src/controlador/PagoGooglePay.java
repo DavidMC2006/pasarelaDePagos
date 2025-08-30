@@ -4,20 +4,27 @@
  */
 package controlador;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David Mansilla
  */
 
-public class PagoGooglePay {
+public class PagoGooglePay implements Pagos{
     private int idPago;             
-    private String googleAccount;
     private String tokenPago;
-
-    public PagoGooglePay(int idPago, String googleAccount, String tokenPago) {
+    private String correo;
+    private double monto=200000;
+    
+    
+    public PagoGooglePay(int idPago, String correo, String tokenPago) {
         this.idPago = idPago;
-        this.googleAccount = googleAccount;
         this.tokenPago = tokenPago;
+        this.correo = correo;
+    }
+    public PagoGooglePay() {
+       
     }
 
    public int getIdPago() {
@@ -28,10 +35,10 @@ public class PagoGooglePay {
     }
 
     public String getGoogleAccount() {
-        return googleAccount; 
+        return correo; 
     }
-    public void setGoogleAccount(String googleAccount) {
-        this.googleAccount = googleAccount; 
+    public void setCorreo(String correo) {
+        this.correo = correo; 
     }
 
     public String getTokenPago() {
@@ -40,5 +47,13 @@ public class PagoGooglePay {
     public void setTokenPago(String tokenPago) {
         this.tokenPago = tokenPago; 
     }
+    public void crearPago() {
+        correo = JOptionPane.showInputDialog("Ingrese su correo de Google Pay:");
+        JOptionPane.showMessageDialog(null,
+                "Pago con GOOGLE PAY realizado\n" +
+                "Monto: $" + monto + " COP\n" +
+                "Correo: " + correo);
+        }
+
 }
 

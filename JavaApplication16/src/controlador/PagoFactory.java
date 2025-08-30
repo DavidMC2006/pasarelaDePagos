@@ -8,6 +8,27 @@ package controlador;
  *
  * @author David Mansilla
  */
-public class PagoFactory {
-    
+import java.util.HashMap;
+import java.util.Map;
+public class PagoFactory  {
+
+   private static final Map<TipoDePago, Pagos> pagos = new HashMap<>() {{
+        put(TipoDePago.PAYPAL, new PagoPaypal());
+        put(TipoDePago.EFECTIVO, new PagoEfectivo());
+        put(TipoDePago.TARJETA_CREDITO, new PagoTarjetaCredito());
+        put(TipoDePago.TARJETA_DEBITO, new PagoTarjetaDebito());
+        put(TipoDePago.TRANSFERENCIAS, new PagoTransferencia());
+        put(TipoDePago.BITCOIN, new PagoBitcoin());
+        put(TipoDePago.CONSIGNACION, new PagoConsignacion());
+        put(TipoDePago.APPLE_PAY, new PagoApplePay());
+        put(TipoDePago.GOOGLE_PAY, new PagoGooglePay());
+    }};
+
+    public Pagos obtenerPago(TipoDePago tipoDePago) {
+        Pagos pago = pagos.get(tipoDePago);
+        if (pago == null) {
+            throw new IllegalArgumentException("Tipo de pago no soportado: " + tipoDePago);
+        }
+        return pago;
+    }
 }

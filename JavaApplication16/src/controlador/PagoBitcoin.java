@@ -11,14 +11,19 @@ import javax.swing.JOptionPane;
  * @author David Mansilla
  */
 
-public class PagoBitcoin {
+public class PagoBitcoin implements Pagos {
     private int idPago;            
     private String walletAddress;
-    private String hashTransaccion;
+    private double monto = 200000;
+        
 
     public PagoBitcoin(int idPago, String walletAddress) {
         this.idPago = idPago;
         this.walletAddress = walletAddress;
+    }
+    
+    public PagoBitcoin() {
+       
     }
 
     public int getIdPago() {
@@ -34,7 +39,16 @@ public class PagoBitcoin {
     public void setWalletAddress(String walletAddress) {
         this.walletAddress = walletAddress; 
     }
-
+public void crearPago() {
+        walletAddress = JOptionPane.showInputDialog("Ingrese la dirección de su billetera Bitcoin:");
+        JOptionPane.showMessageDialog(null,
+                "Pago con BITCOIN realizado\n" +
+                "Monto: $" + monto + " COP\n" +
+                "Wallet: " + walletAddress);
+        }
    
 }
+
+
+
 

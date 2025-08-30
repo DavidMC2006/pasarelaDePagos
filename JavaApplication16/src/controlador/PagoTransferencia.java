@@ -4,21 +4,30 @@
  */
 package controlador;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David Mansilla
  */
-public class PagoTransferencia {
+public class PagoTransferencia implements Pagos{
     private int idTransferencia;
     private int idPago;         
-    private int idProducto;    
-    private int cantidad;
+    private String banco;    
+    private String referencia;
+    private double monto = 200000;
+    
 
-    public PagoTransferencia(int idTransferencia, int idPago, int idProducto, int cantidad) {
+
+    public PagoTransferencia(int idTransferencia, int idPago, String banco, String referencia) {
         this.idTransferencia = idTransferencia;
         this.idPago = idPago;
-        this.idProducto = idProducto;
-        this.cantidad = cantidad;
+        this.banco = banco;
+        this.referencia = referencia;
+        
+    }
+    public PagoTransferencia() {
+       
     }
 
     public int getIdTransferencia() {
@@ -35,18 +44,28 @@ public class PagoTransferencia {
         this.idPago = idPago; 
     }
 
-    public int getIdProducto() {
-        return idProducto; 
+    public String getBanco() {
+        return banco; 
     }
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto; 
+    public void setIdProducto(String banco) {
+        this.banco = banco; 
     }
 
-    public int getCantidad() {
-        return cantidad; 
+    public String getCantidad() {
+        return referencia; 
     }
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad; 
+    public void setReferencia(String referencia) {
+        this.referencia = referencia; 
     }
+        public void crearPago() {
+        banco = JOptionPane.showInputDialog("Ingrese el banco desde el que transfiere:");
+        referencia = JOptionPane.showInputDialog("Ingrese el número de referencia de la transacción:");
+
+        JOptionPane.showMessageDialog(null,
+                "Pago con TRANSFERENCIA realizado\n" +
+                "Monto: $" + monto + " COP\n" +
+                "Banco: " + banco + "\n" +
+                "Referencia: " + referencia);
+        }
 }
 

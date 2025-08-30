@@ -4,22 +4,31 @@
  */
 package controlador;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author David Mansilla
  */
 
 
-public class PagoEfectivo {
+public class PagoEfectivo implements Pagos{
     private int idPago;         
     private double montoRecibido;
     private double cambio;
+    private String correo;
+    private double monto=200000;
 
+   
     
     public PagoEfectivo(int idPago, double montoRecibido, double cambio) {
         this.idPago = idPago;
         this.montoRecibido = montoRecibido;
         this.cambio = cambio;
+    }
+    
+    public PagoEfectivo() {
+       
     }
 
     public int getIdPago() { 
@@ -42,4 +51,21 @@ public class PagoEfectivo {
     public void setCambio(double cambio) {
         this.cambio = cambio; 
     }
+    @Override
+    public void crearPago() {
+         montoRecibido = Double.parseDouble(JOptionPane.showInputDialog("Monto a pagar: $" + monto + " COP\nIngrese el dinero entregado:"));
+
+        if (montoRecibido < monto) {
+            JOptionPane.showMessageDialog(null, "El dinero entregado es insuficiente.\nFaltan: $" + (monto - montoRecibido) + " COP");
+        } else {
+             cambio = montoRecibido - monto;
+             correo = JOptionPane.showInputDialog("Ingrese su correo electrónico para enviar la factura:");
+            JOptionPane.showMessageDialog(null,
+                    "Pago en EFECTIVO realizado\n" +
+                    "Monto: $" + monto + " COP\n" +
+                    "Entregado: $" + montoRecibido + " COP\n" +
+                    "Cambio: $" + cambio + " COP\n" +
+                    "Factura enviada a: " + correo);
+        }
+        }
 }
